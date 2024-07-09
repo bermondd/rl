@@ -4746,7 +4746,7 @@ class TensorDictPrimer(Transform):
                         )
                         prev_val = tensordict.get(key, 0.0)
                         value = torch.where(
-                            expand_as_right(_reset, value), value, prev_val
+                            expand_as_right(_reset, value).to(spec.device), value, prev_val
                         )
                 tensordict_reset.set(key, value)
             self._validated = True
